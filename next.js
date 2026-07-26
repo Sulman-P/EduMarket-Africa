@@ -5,7 +5,15 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ['your-supabase-bucket.supabase.co'],
+    domains: process.env.NEXT_PUBLIC_SUPABASE_URL 
+      ? [new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname]
+      : [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
+      },
+    ],
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -17,6 +25,10 @@ const nextConfig = {
       };
     }
     return config;
+  },
+  // Add this to fix edge runtime issues
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
 };
 
