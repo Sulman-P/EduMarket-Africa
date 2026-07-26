@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VisionPoint Admin Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>VisionPoint Admin</h2>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="admin.html">Dashboard</a>
+</nav>
+
+</header>
+
+
+<section class="admin-container">
+
+<h2>Create New Exam</h2>
+
+<input id="examTitle" placeholder="Exam Title">
+
+<input id="examSubject" placeholder="Subject">
+
+<input id="examTime" placeholder="Time Limit (minutes)">
+
+<textarea id="examDescription" placeholder="Description"></textarea>
+
+<button onclick="createExam()">Create Exam</button>
+
+
+<hr>
+
+
+<h2>Add Question</h2>
+
+<input id="examId" placeholder="Exam ID">
+
+<textarea id="questionText" placeholder="Question"></textarea>
+
+<input id="optionA" placeholder="Option A">
+<input id="optionB" placeholder="Option B">
+<input id="optionC" placeholder="Option C">
+<input id="optionD" placeholder="Option D">
+
+<input id="correctAnswer" placeholder="Correct Answer">
+
+<button onclick="addQuestion()">Add Question</button>
+
+
+<hr>
+
+<h2>Uploaded Exams</h2>
+
+<div id="examList"></div>
+
+</section>
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>

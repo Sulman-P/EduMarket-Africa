@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VisionPoint Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</head>
+
+<body>
+
+<header class="exam-header">
+
+<h2 id="examTitle">Exam</h2>
+
+<div id="timer">15:00</div>
+
+</header>
+
+
+<div class="exam-layout">
+
+<!-- Question Navigator -->
+
+<div class="question-nav" id="questionNav"></div>
+
+
+<!-- Question Area -->
+
+<div class="question-area">
+
+<div id="progressBar">
+<div id="progress"></div>
+</div>
+
+<div id="questionContainer"></div>
+
+<div class="exam-buttons">
+
+<button onclick="prevQuestion()">Previous</button>
+<button onclick="nextQuestion()">Next</button>
+<button onclick="submitExam()">Submit Exam</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="exam.js"></script>
+
+</body>
+
+</html>

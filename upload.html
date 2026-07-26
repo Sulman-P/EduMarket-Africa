@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Upload | VisionPoint</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f6fb;
+}
+
+header{
+background:#0d47a1;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#1a237e;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+}
+
+.container{
+max-width:700px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:8px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+background:#0d47a1;
+color:white;
+padding:12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1565c0;
+}
+
+.success{
+color:green;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>VisionPoint Teacher Upload Portal</h1>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="resources.html">Resources</a>
+<a href="admin.html">Admin</a>
+</nav>
+
+<div class="container">
+
+<h2>Upload Exam Resource</h2>
+
+<form id="uploadForm">
+
+<label>Subject</label>
+<select id="subject" required>
+<option value="">Select Subject</option>
+<option>Mathematics</option>
+<option>Integrated Science</option>
+<option>English</option>
+<option>Social Studies</option>
+<option>Kiswahili</option>
+<option>Creative Arts</option>
+</select>
+
+<label>Exam Title</label>
+<input type="text" id="title" required>
+
+<label>Select PDF File</label>
+<input type="file" id="file" accept="application/pdf" required>
+
+<button type="submit">Upload Exam</button>
+
+</form>
+
+<p class="success" id="message"></p>
+
+</div>
+
+<script>
+
+document.getElementById("uploadForm").addEventListener("submit",function(e){
+
+e.preventDefault()
+
+const file=document.getElementById("file").files[0]
+
+if(!file){
+alert("Please select a file")
+return
+}
+
+if(file.type!=="application/pdf"){
+alert("Only PDF files are allowed")
+return
+}
+
+document.getElementById("message").innerText=
+"Upload recorded. Admin will review before publishing."
+
+})
+
+</script>
+
+</body>
+</html>

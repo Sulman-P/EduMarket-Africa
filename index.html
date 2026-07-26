@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexalearn International</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Nexalearn International</h1>
+      <p>Empowering education, collaboration, and innovation worldwide</p>
+      <a href="#levels" class="btn">Explore Academic Levels</a>
+    </div>
+  </section>
+
+  <!-- Hamburger Menu Button -->
+  <button class="menu-toggle">☰ Menu</button>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#courses">Courses</a>
+    <a href="#resources">Resources</a>
+    <a href="#community">Community</a>
+    <a href="#career">Career Services</a>
+    <a href="#contact">Contact</a>
+
+    <!-- Academic Levels Dropdown -->
+    <div class="dropdown">
+      <button class="dropbtn">Academic Levels ▾</button>
+      <div class="dropdown-content">
+        <a href="#primary">Level 1: Primary</a>
+        <a href="#junior">Level 2: Junior School</a>
+        <a href="#senior">Level 3: Senior School</a>
+        <a href="#university">Level 4: University</a>
+        <a href="#life">Life Skills</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="levels">
+    <!-- Primary Level -->
+    <section id="primary" class="level">
+      <h2>Level 1: Primary School</h2>
+      <p>PP1, PP2, Grades 1–6</p>
+      <div class="subjects">
+        <a href="resources/mathematics.html" class="btn">Mathematics</a>
+        <a href="resources/english.html" class="btn">English</a>
+        <a href="resources/kiswahili.html" class="btn">Kiswahili</a>
+        <a href="resources/science.html" class="btn">Science</a>
+        <a href="resources/social.html" class="btn">Social Studies</a>
+        <a href="resources/arts.html" class="btn">Creative Arts</a>
+      </div>
+      <!-- Upload Resources Button -->
+      <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
+         <label class="btn upload-btn">
+         Upload Resources
+         <input type="file" name="resource" class="file-input" onchange="this.form.submit()">
+        </label>
+      </form>
+      <span class="file-name"></span>
+       <a href="#" class="btn">Explore Resources</a>
+     </section>
+
+    <!-- Junior School -->
+    <section id="junior" class="level">
+      <h2>Level 2: Junior School</h2>
+      <p>Grades 7–9</p>
+      <div class="subjects">
+        <a href="resources/mathematics.html" class="btn">Mathematics</a>
+        <a href="resources/english.html" class="btn">English</a>
+        <a href="resources/kiswahili.html" class="btn">Kiswahili</a>
+        <a href="resources/science.html" class="btn">Integrated Science</a>
+        <a href="resources/religion.html" class="btn">Religious Education</a>
+        <a href="resources/social.html" class="btn">Social Studies</a>
+        <a href="resources/pretech.html" class="btn">Pre‑Technical Studies</a>
+        <a href="resources/agriculture.html" class="btn">Agriculture</a>
+        <a href="resources/arts.html" class="btn">Creative Arts</a>
+        <a href="resources/signlanguage.html" class="btn">Kenya Sign Language</a>
+      </div>
+      <!-- Upload Resources Button -->
+      <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
+       <label class="btn upload-btn">
+       Upload Resources
+       <input type="file" name="resource" class="file-input" onchange="this.form.submit()">
+       </label>
+     </form>
+        <span class="file-name"></span>
+        <a href="#" class="btn">Explore Resources</a>
+     </section>
+
+    <!-- Senior School -->
+    <section id="senior" class="level">
+      <h2>Level 3: Senior School</h2>
+      <p>Grades 10–12</p>
+      <div class="subjects">
+        <a href="resources/mathematics.html" class="btn">Core Mathematics</a>
+        <a href="resources/chemistry.html" class="btn">Chemistry</a>
+        <a href="resources/physics.html" class="btn">Physics</a>
+        <a href="resources/biology.html" class="btn">Biology</a>
+        <a href="resources/englishlit.html" class="btn">English Literature</a>
+        <a href="resources/kiswahili.html" class="btn">Kiswahili</a>
+        <a href="resources/geography.html" class="btn">Geography</a>
+        <a href="resources/history.html" class="btn">History & Citizenship</a>
+        <a href="resources/sports.html" class="btn">Sports & Recreation</a>
+        <a href="resources/music.html" class="btn">Music & Fine Arts</a>
+        <a href="resources/business.html" class="btn">Business Studies</a>
+        <a href="resources/computer.html" class="btn">Computer Studies</a>
+      </div>
+     <!-- Upload Resources Button -->
+     <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
+     <label class="btn upload-btn">
+      Upload Resources
+     <input type="file" name="resource" class="file-input" onchange="this.form.submit()">
+      </label>
+    </form>
+    <span class="file-name"></span>
+     <a href="#" class="btn">Explore Resources</a>
+   </section>
+
+    <!-- University -->
+    <section id="university" class="level">
+      <h2>Level 4: University</h2>
+      <p>Sample globally recognized courses:</p>
+      <div class="subjects">
+        <a href="resources/compsci.html" class="btn">Computer Science</a>
+        <a href="resources/medicine.html" class="btn">Medicine</a>
+        <a href="resources/law.html" class="btn">Law</a>
+        <a href="resources/engineering.html" class="btn">Engineering</a>
+        <a href="resources/business.html" class="btn">Business Administration</a>
+        <a href="resources/psychology.html" class="btn">Psychology</a>
+        <a href="resources/intlrelations.html" class="btn">International Relations</a>
+      </div>
+      <!-- Upload Resources Button -->
+     <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
+       <label class="btn upload-btn">
+      Upload Resources
+       <input type="file" name="resource" class="file-input" onchange="this.form.submit()">
+      </label>
+   </form>
+       <span class="file-name"></span>
+       <a href="#" class="btn">Explore Resources</a>
+     </section>
+
+    <!-- Life Skills -->
+    <section id="life" class="level">
+      <h2>Life Skills & Financial Literacy</h2>
+      <p>Practical knowledge for everyday life.</p>
+      <div class="subjects">
+        <a href="resources/finance.html" class="btn">Financial Literacy</a>
+        <a href="resources/personaldev.html" class="btn">Personal Development</a>
+        <a href="resources/health.html" class="btn">Health & Wellness</a>
+        <a href="resources/digital.html" class="btn">Digital Skills</a>
+      </div>
+      <!-- Upload Resources Button -->
+     <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
+     <label class="btn upload-btn">
+      Upload Resources
+      <input type="file" name="resource" class="file-input" onchange="this.form.submit()">
+     </label>
+    </form>
+      <span class="file-name"></span>
+      <a href="#" class="btn">Explore Resources</a>
+   </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Nexalearn International. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
+</body>
+  <script>
+  // Handle file picker feedback
+  document.querySelectorAll('.file-input').forEach(input => {
+    input.addEventListener('change', function() {
+      const fileName = this.files.length > 0 ? this.files[0].name : "No file selected";
+      this.closest('section').querySelector('.file-name').textContent = "Selected: " + fileName;
+    });
+  });
+</script>
+</html>
