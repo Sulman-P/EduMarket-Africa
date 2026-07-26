@@ -1,0 +1,3 @@
+[functions.megapay-checkout]
+# The function authenticates /initiate in code and validates signed Megapay webhooks itself.
+verify_jwt = false
