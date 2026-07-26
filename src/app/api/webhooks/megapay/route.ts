@@ -8,23 +8,20 @@ export async function POST(request: NextRequest) {
     const body = await request.text()
     const signature = request.headers.get('x-megapay-signature') || ''
     
-    // Verify webhook signature
     const isValid = await megapayClient.verifyWebhookSignature(body, signature)
     if (!isValid) {
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
     }
 
     const payload = JSON.parse(body)
-    const { transactionId, status, amount, currency, metadata } = payload
+    const { transactionId, status } = payload
 
     const supabase = createServerSupabaseClient()
 
-    // Update order status
     const { data: order, error: orderError } = await supabase
       .from('orders')
       .update({ 
         status: status === 'completed' ? 'paid' : status,
-        megapay_transaction_id: transactionId,
         updated_at: new Date().toISOString()
       })
       .eq('megapay_transaction_id', transactionId)
@@ -32,11 +29,9 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (orderError) {
-      console.error('Error updating order:', orderError)
       return NextResponse.json({ error: 'Order update failed' }, { status: 500 })
     }
 
-    // If payment successful, generate download URL
     if (status === 'completed' && order) {
       const { data: resource } = await supabase
         .from('resources')
@@ -45,13 +40,11 @@ export async function POST(request: NextRequest) {
         .single()
 
       if (resource) {
-        // Generate signed URL
         const { data: signedUrl } = await supabase
           .storage
           .from('resources')
-          .createSignedUrl(resource.file_path, 3600) // 1 hour expiry
+          .createSignedUrl(resource.file_path, 3600)
 
-        // Update order with download URL
         await supabase
           .from('orders')
           .update({ 
@@ -59,18 +52,12 @@ export async function POST(request: NextRequest) {
             download_expires_at: new Date(Date.now() + 3600000).toISOString()
           })
           .eq('id', order.id)
-
-        // Increment download count
-        await supabase
-          .from('resources')
-          .update({ downloads_count: supabase.rpc('increment', { x: 1 }) })
-          .eq('id', order.resource_id)
       }
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Webhook error:', error)
-    return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 })
+    return NextResponse.json({ error: 'Webhook failed' }, { status: 500 })
   }
 }
