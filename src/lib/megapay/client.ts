@@ -5,15 +5,6 @@ interface MegapayConfig {
   callbackUrl: string
 }
 
-interface MegapayTransaction {
-  id: string
-  amount: number
-  currency: string
-  phoneNumber?: string
-  paymentMethod: 'mpesa' | 'card'
-  status: 'pending' | 'completed' | 'failed'
-}
-
 export class MegapayClient {
   private apiKey: string
   private baseUrl: string
@@ -32,7 +23,7 @@ export class MegapayClient {
     email: string
     description: string
     metadata?: Record<string, any>
-  }): Promise<{ transactionId: string; redirectUrl?: string; checkoutUrl?: string }> {
+  }) {
     const response = await fetch(`${this.baseUrl}/payments/initiate`, {
       method: 'POST',
       headers: {
@@ -62,25 +53,7 @@ export class MegapayClient {
     }
   }
 
-  async verifyPayment(transactionId: string): Promise<MegapayTransaction> {
-    const response = await fetch(`${this.baseUrl}/payments/${transactionId}/verify`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
-      },
-    })
-
-    if (!response.ok) {
-      throw new Error(`Megapay API error: ${response.statusText}`)
-    }
-
-    return await response.json()
-  }
-
-  async verifyWebhookSignature(
-    payload: string,
-    signature: string
-  ): Promise<boolean> {
+  async verifyWebhookSignature(payload: string, signature: string): Promise<boolean> {
     try {
       const encoder = new TextEncoder()
       const data = encoder.encode(payload + this.apiKey)
@@ -89,13 +62,11 @@ export class MegapayClient {
       const computedSignature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
       return signature === computedSignature
     } catch (error) {
-      console.error('Signature verification error:', error)
       return false
     }
   }
 }
 
-// Export a singleton instance
 export const megapayClient = new MegapayClient({
   apiKey: process.env.MEGAPAY_API_KEY || '',
   environment: (process.env.MEGAPAY_ENVIRONMENT as 'sandbox' | 'production') || 'sandbox',
