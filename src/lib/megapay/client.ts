@@ -81,25 +81,23 @@ export class MegapayClient {
     payload: string,
     signature: string
   ): Promise<boolean> {
-    // Implement webhook signature verification
-    // This should match Megapay's signature verification method
-    const expectedSignature = await this.generateSignature(payload)
-    return signature === expectedSignature
-  }
-
-  private async generateSignature(payload: string): Promise<string> {
-    // Implement your signature generation logic here
-    // Typically using HMAC with your API key
-    const encoder = new TextEncoder()
-    const data = encoder.encode(payload + this.apiKey)
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data)
-    const hashArray = Array.from(new Uint8Array(hashBuffer))
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+    try {
+      const encoder = new TextEncoder()
+      const data = encoder.encode(payload + this.apiKey)
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+      const hashArray = Array.from(new Uint8Array(hashBuffer))
+      const computedSignature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+      return signature === computedSignature
+    } catch (error) {
+      console.error('Signature verification error:', error)
+      return false
+    }
   }
 }
 
+// Export a singleton instance
 export const megapayClient = new MegapayClient({
-  apiKey: process.env.MEGAPAY_API_KEY!,
+  apiKey: process.env.MEGAPAY_API_KEY || '',
   environment: (process.env.MEGAPAY_ENVIRONMENT as 'sandbox' | 'production') || 'sandbox',
-  callbackUrl: process.env.NEXT_PUBLIC_MEGAPAY_WEBHOOK_URL!,
+  callbackUrl: process.env.NEXT_PUBLIC_MEGAPAY_WEBHOOK_URL || '',
 })
