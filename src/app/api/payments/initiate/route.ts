@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Initiate Megapay payment
-    const paymentData = {
+    const paymentData: any = {
       amount: resource.currency === 'KES' ? resource.price_kes : resource.price_usd,
       currency: resource.currency,
       email: user.email!,
