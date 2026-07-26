@@ -1,0 +1,17 @@
+# wrangler.toml
+name = "edumarket-africa"
+compatibility_date = "2024-01-01"
+
+pages_build_output_dir = ".vercel/output/static"
+
+[vars]
+NEXT_PUBLIC_SUPABASE_URL = "your-supabase-url"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "your-supabase-anon-key"
+MEGAPAY_API_KEY = "your-megapay-api-key"
+MEGAPAY_ENVIRONMENT = "sandbox"
+NEXT_PUBLIC_MEGAPAY_WEBHOOK_URL = "https://edumarket-africa.pages.dev/api/webhooks/megapay"
+
+[env.production]
+vars = { 
+  MEGAPAY_ENVIRONMENT = "production" 
+}
